@@ -54,7 +54,6 @@ Theme Version: 1.0
     --shap-gap: 25px;
     --section-clip-path: polygon(100% 0, 100% calc(100% - var(--clip-path-gap)), 50% 100%, 0 calc(100% - var(--clip-path-gap)), 0 0);
     --full-section-clip-path: polygon(0 0, 50% var(--clip-path-gap), var(--display-width) 0, var(--display-width) 100%, 50% calc(100% - var(--clip-path-gap)), 0 100%);
-
 }
 
 
@@ -76,10 +75,18 @@ Theme Version: 1.0
 
 @media (max-width: 991px) {
     :root {
+        --clip-path-gap: 100px;
+        --display-width: 1000px;
+        --shap-gap: 15px;
+    }
+}
+
+/* @media (max-width: 991px) {
+    :root {
         --section-clip-path: none;
         --full-section-clip-path: none;
     }
-}
+} */
 
 /* ======= 1. Variables End ======= */
 
@@ -404,27 +411,27 @@ h6 {
 @media screen and (max-width: 991px) {
     .h1-title {
         font-size: 52px;
-        text-align: center;
+        /* text-align: center; */
     }
 
     .h2-title {
         font-size: 32px;
-        text-align: center;
+        /* text-align: center; */
     }
 
     .h3-title {
         font-size: 28px;
-        text-align: center;
+        /* text-align: center; */
     }
 
     .h4-title {
         font-size: 20px;
-        text-align: center;
+        /* text-align: center; */
     }
 
     .sub-title {
         font-size: 18px;
-        text-align: center;
+        /* text-align: center; */
         margin-bottom: 10px;
     }
 }
@@ -506,7 +513,7 @@ h6 {
     border-color: var(--red-color);
 }
 
-.theme-btn.red:hover {
+.theme-btn.red-btn:hover {
     background-color: var(--white-color);
     border-color: var(--red-color);
     color: var(--red-color);
@@ -562,6 +569,28 @@ h6 {
     gap: 30px;
     position: relative;
     z-index: 1;
+}
+
+.service-content {
+    padding: 0 100px;
+}
+
+@media (max-width:1399px) {
+    .service-content {
+        padding: 0 50px;
+    }
+}
+
+@media (max-width:1199px) {
+    .service-content {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width:991px) {
+    .service-content {
+        padding: 0;
+    }
 }
 
 .banner-botoom-shape,
@@ -651,6 +680,9 @@ h6 {
 
     .section-content {
         gap: 20px;
+    }
+    .banner-botoom-shape::after {
+        bottom: 10px;
     }
 }
 
@@ -998,11 +1030,11 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
         display: none;
     }
 
-    .banner-botoom-shape,
+    /* .banner-botoom-shape,
     .botoom-shape,
     .top-shape {
         display: none;
-    }
+    } */
 
     header .container {
         max-width: 100%;
@@ -1035,7 +1067,7 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
 /* ======= 7. Banner Section CSS Start ======= */
 .banner-section {
     position: relative;
-    padding: 250px 0 calc(120px + var(--clip-path-gap));
+    padding: 250px 0 calc(var(--clip-path-gap)*2);
     z-index: 2;
 }
 
@@ -1105,12 +1137,18 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
     gap: 30px;
     flex-wrap: wrap;
 }
+@media (max-width:991px) {
+    .banner-section .banner-content{
+        gap: 40px;
+    }
+}
 
 /* ======= 7. Banner Section CSS End ======= */
 
 /* ======= 8. CTA section CSS Start ======= */
 .cta-section {
-    padding: calc(150px + var(--clip-path-gap)) 0 var(--clip-path-gap);
+    /* padding: calc(var(--section-extra-gap) + var(--clip-path-gap)) 0 var(--clip-path-gap); */
+    padding: calc(var(--clip-path-gap)*2) 0 var(--clip-path-gap);
     background-image: url(../images/dream-kitchen-transformations.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -1152,26 +1190,23 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
     background-color: var(--primary-color);
 }
 
+/* 
 @media (max-width:991px) {
     .cta-section {
         margin-block: 0;
     }
-}
+} */
 
 
 /* ======= 8. CTA section CSS End ======= */
 
 /* ======= 9. Heating section CSS Start ======= */
 .heating-section {
-    padding: calc(150px + var(--clip-path-gap)) 0;
+    padding: calc(var(--clip-path-gap)*2) 0;
     position: relative;
     clip-path: var(--full-section-clip-path);
     background-color: var(--white-color);
     z-index: 3;
-}
-
-.heating-section .heating-content {
-    padding: 0 100px;
 }
 
 .heating-section::before,
@@ -1188,7 +1223,7 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
     background-position: center;
 }
 
-@media (min-width:992px) {
+@media (min-width:768px) {
 
     .shap-section {
         width: var(--display-width);
@@ -1203,11 +1238,26 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
     background: var(--black-color);
 }
 
+@media (max-width:991px) {
+
+    .heating-section::before,
+    .cooling-section::before {
+        width: 720px;
+        right: auto !important;
+        left: 50% !important;
+        transform: translateX(-50%);
+        position: relative;
+        aspect-ratio: 1 / 0.5;
+        display: block;
+        margin-bottom: 50px;
+    }
+}
+
 /* ======= 9. Heating section CSS End ======= */
 
 /* ======= 10. Cooling section CSS Start ======= */
 .cooling-section {
-    padding: calc(150px + var(--clip-path-gap)) 0;
+    padding: calc(var(--clip-path-gap)*2) 0;
     position: relative;
     background-color: #ECEDEF;
     margin-block: calc(var(--clip-path-gap)* -1);
@@ -1220,17 +1270,17 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
     right: 0;
 }
 
-@media (max-width:991px) {
+/* @media (max-width:991px) {
     .cooling-section {
         margin-block: 0;
     }
-}
+} */
 
 /* ======= 10. Cooling section CSS End ======= */
 
 /* ======= 11. Gallery section CSS End ======= */
 .gallery-section {
-    padding: calc(150px + var(--clip-path-gap)) 0 var(--clip-path-gap);
+    padding: calc(var(--clip-path-gap)*2) 0 var(--clip-path-gap);
     position: relative;
     margin-block: calc(var(--clip-path-gap)* -1);
     z-index: 1;
@@ -1242,8 +1292,13 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
 }
 
 @media (max-width:991px) {
-    .gallery-section {
+
+    /* .gallery-section {
         margin-block: 0;
+    } */
+    .gallery-section .img-wrapper {
+        max-width: 450px;
+        margin: 0 auto;
     }
 }
 
@@ -1251,7 +1306,7 @@ header nav.navbar .navbar-nav .nav-item .nav-link.active {
 footer {}
 
 footer .main-footer {
-    padding: calc(150px + var(--clip-path-gap)) 0 var(--clip-path-gap);
+    padding: calc(var(--clip-path-gap)*2) 0 var(--clip-path-gap);
     position: relative;
     z-index: 1;
     background-color: var(--black-color);
@@ -1352,7 +1407,7 @@ footer .footer-end .footer-bottom-text {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 24px;
+    gap: 15px 24px;
     flex-wrap: wrap;
 }
 
@@ -1375,4 +1430,10 @@ footer .footer-end .footer-bottom-link ul li a {
 
 footer .footer-end .footer-bottom-link ul li a:hover {
     color: var(--primary-color);
+}
+
+@media (max-width:991px) {
+    footer .footer-end .footer-bottom-text {
+        justify-content: center;
+    }
 }
